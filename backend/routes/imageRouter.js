@@ -1,8 +1,8 @@
 const { Router } = require('express');
 const router = Router();
 
-router.get('/', (req, res) => {
-  res.json('Inky says Hi!');
-});
+const imageController = require('../controllers/imageController');
+
+router.get('/', imageController.getRandomImage);
 
 module.exports = router;
