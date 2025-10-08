@@ -1,16 +1,23 @@
 const cloudinary = require('../utils/cloudinary');
 
 async function getRandomImage(req, res) {
-  let result;
+  try {
+    const result = await cloudinary.api.resources_by_asset_folder('inky-pi');
 
-  await cloudinary.api.resources_by_asset_folder('inky-pi', {}, (err, res) => {
-    result = res;
-  });
+    // Defensive check in case no resources found
+    if (!result.resources || result.resources.length === 0) {
+      return res.status(404).json({ error: 'No images found' });
+    }
 
-  const randomImageIndex = Math.floor(Math.random() * result.total_count + 1);
-  result = result.resources[randomImageIndex].secure_url;
+    // Pick a random image index (0-based)
+    const randomIndex = Math.floor(Math.random() * result.total_count + 1);
 
-  res.json(result);
+    // Send the URL as JSON
+    res.json(result.resources[randomIndex].secure_url);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch images' });
+  }
 }
 
 module.exports = { getRandomImage };
