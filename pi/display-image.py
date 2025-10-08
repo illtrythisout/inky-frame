@@ -1,11 +1,11 @@
 import sys, os, time
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
 
-# Define library and assest directories
-libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib')
-picdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'pic')
-if os.path.exists(libdir):
-  sys.path.append(libdir)
+# Define library and assets directories
+lib_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib')
+pic_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'pic')
+if os.path.exists(lib_dir):
+  sys.path.append(lib_dir)
 
 from waveshare_epd import epd7in3f
 
@@ -17,13 +17,13 @@ try:
   logging.info('Display Image Script:')
   epd = epd7in3f.EPD()
 
-  logging.info('Initialising and clearing scren...')
+  logging.info('Initializing and clearing scren...')
   epd.init()
   epd.Clear()
   
   # Display img
   logging.info('Rendering image...')
-  image_path = os.path.join(picdir, 'image.png')
+  image_path = os.path.join(lib_dir, 'image.png')
   image = Image.open(image_path).convert('RGB')
   epd.display(epd.getbuffer(image))
 
