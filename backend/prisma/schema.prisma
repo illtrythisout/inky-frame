@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Album {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  images Image[]
+}
+
+model Image {
+  id            Int      @id @default(autoincrement())
+  savedFilename String?  @db.VarChar(255)
+  url           String
+  publicId      String
+  size          Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  mimetype      String
+
+  parent   Album? @relation(fields: [parentId], references: [id])
+  parentId Int?
+}
