@@ -1,39 +1,47 @@
-import sys, os, time
+import sys, os, time, logging, requests
 from PIL import Image
+from io import BytesIO
 
 # Define library and assets directories
 lib_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib')
-pic_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'pic')
 if os.path.exists(lib_dir):
   sys.path.append(lib_dir)
 
 from waveshare_epd import epd7in3f
 
-import logging
+# Setup logging
 logging.basicConfig(level=logging.INFO)
 
-try:
-  # init
-  logging.info('Display Image Script:')
-  epd = epd7in3f.EPD()
+# Image API
+IMAGE_API = 'http://localhost:3000/images/get'
 
-  logging.info('Initializing and clearing scren...')
+try:
+  # Fetch image
+  logging.info('Fetching image url from the inky-frame backend')
+  response = requests.get(IMAGE_API)
+  response.raise_for_status()
+  data = response.json()
+  image_url = data['url']
+
+  logging.info('Downloading image from the cloudinary storage system')
+  cloudinary_response = requests.get(image_url)
+  cloudinary_response.raise_for_status()
+
+  # Open image in memory
+  image = Image.open(BytesIO(cloudinary_response.content)).convert('RGB')
+
+  # Init display
+  logging.info('Initializing screen')
+  epd = epd7in3f.EPD()
   epd.init()
-  epd.Clear()
   
   # Display img
-  logging.info('Rendering image...')
-  image_path = os.path.join(lib_dir, 'image.png')
-  image = Image.open(image_path).convert('RGB')
+  logging.info('Rendering image')
   epd.display(epd.getbuffer(image))
 
-  logging.info('Image rendered, it will show for 5s')
-  time.sleep(5)
+  time.sleep(2)
 
-  # Clearing screen
-  logging.info('Clearing screen')
-  epd.Clear()
-
+  # Deactivte screen
   logging.info('Going to sleep')
   epd.sleep()
 
@@ -44,3 +52,10 @@ except KeyboardInterrupt:
     logging.info("ctrl + c:")
     epd7in3f.epdconfig.module_exit(cleanup=True)
     exit()
+
+except requests.exceptions.RequestException as e:
+    print(f'Err: {e}')
+
+
+
+
