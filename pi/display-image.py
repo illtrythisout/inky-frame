@@ -9,6 +9,20 @@ if os.path.exists(lib_dir):
 
 from waveshare_epd import epd7in3f
 
+# Initialization wrapper function to prevent multiple successive screen inits when auto running
+_epd_instance = None
+def get_epd():
+    # Safely get or initialize the EPD object
+    global _epd_instance
+
+    if _epd_instance is None:
+        _epd_instance = epd7in3f.EPD()
+        _epd_instance.init()
+    else:
+        logging.info('EPD instance already active, skipping init.')
+
+    return _epd_instance
+
 # Setup logging
 logging.basicConfig(level=logging.INFO)
 
@@ -32,8 +46,7 @@ try:
 
   # Init display
   logging.info('Initializing screen')
-  epd = epd7in3f.EPD()
-  epd.init()
+  epd = get_epd()
   
   # Display img
   logging.info('Rendering image')
@@ -41,7 +54,7 @@ try:
 
   time.sleep(2)
 
-  # Deactivte screen
+  # Deactivate screen
   logging.info('Going to sleep')
   epd.sleep()
 
@@ -55,7 +68,3 @@ except KeyboardInterrupt:
 
 except requests.exceptions.RequestException as e:
     print(f'Err: {e}')
-
-
-
-
