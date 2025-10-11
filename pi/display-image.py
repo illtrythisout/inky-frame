@@ -27,7 +27,7 @@ def get_epd():
 logging.basicConfig(level=logging.INFO)
 
 # Image API
-IMAGE_API = 'http://localhost:3000/images/get'
+IMAGE_API = 'http://localhost:3000/images/'
 
 try:
   # Fetch image
