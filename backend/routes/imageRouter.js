@@ -3,6 +3,6 @@ const router = Router();
 
 const imageController = require('../controllers/imageController');
 
-router.get('/', imageController.getRandomImage);
+router.get('/get', imageController.getRandomImage);
 
 module.exports = router;

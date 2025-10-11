@@ -13,7 +13,7 @@ async function getRandomImage(req, res) {
     const randomIndex = Math.floor(Math.random() * result.total_count + 1);
 
     // Send the URL as JSON
-    res.json(result.resources[randomIndex].secure_url);
+    res.json(result.resources[randomIndex]);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to fetch images' });

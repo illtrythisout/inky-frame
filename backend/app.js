@@ -10,7 +10,7 @@ app.use(express.json());
 
 // Router
 const imageRouter = require('./routes/imageRouter');
-app.use('/', imageRouter);
+app.use('/images', imageRouter);
 
 // Start server
 const PORT = process.env.PORT || 3000;
