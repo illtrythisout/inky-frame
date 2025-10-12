@@ -59,6 +59,9 @@ select {
 #root {
   width: 100vw;
   min-height: 100lvh;
+
+  padding: var(--default-padding);
+
   font-family: monospace;
   color: var(--color-text-co);
 }
@@ -73,8 +76,14 @@ main {
 
   background-color: var(--color-canvas);
 }
+a {
+  color: var(--color-text-co);
+}
 b {
   font-weight: bold;
+}
+h1 {
+  font-size: 2rem;
 }
 svg {
   --size: 1em;
