@@ -91,7 +91,9 @@ async function deleteImage(req, res) {
     // delete from database if cloudinary delete was successful
     await prisma.image.delete({ where: { id: currentImage.id } });
 
-    res.status(200).json({ message: 'Deleted', cloudResult });
+    res
+      .status(200)
+      .json({ message: 'Deleted', data: { id: currentImage.id }, cloudResult });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to delete image' });
@@ -169,7 +171,7 @@ async function deleteAlbum(req, res) {
       where: { id: Number(req.params.id) },
     });
 
-    res.status(200).json({ data: result });
+    res.status(200).json({ message: 'Deleted', data: result });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to delete album' });
