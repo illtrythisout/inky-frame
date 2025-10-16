@@ -24,7 +24,7 @@ function App() {
           {albums.map((album) => {
             return <Album key={album.id} {...album} />;
           })}
-          <AddItem itemToAdd="Album" />
+          <AddItem itemToAdd="album" />
         </div>
       </section>
     </>

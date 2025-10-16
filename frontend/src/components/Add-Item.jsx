@@ -1,11 +1,13 @@
 import '../styles/card.css';
 
 function AddItem({ itemToAdd }) {
-  return (
-    <button onClick={console.log(`Add ${itemToAdd}`)} className="card">
-      <p>+</p>
-    </button>
-  );
+  switch (itemToAdd) {
+    case 'album':
+      break;
+
+    default:
+      break;
+  }
 }
 
 export default AddItem;

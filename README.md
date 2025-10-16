@@ -19,8 +19,8 @@ The inky pi runs an api with Node.js on the pi itself that delivers images to th
 - **Delete image:** (DELETE) /images/:imageId
 - **Upload image:** (POST) /albums/:albumId/images (the image needs to be in a form with the attribute `enctype="multipart/form-data"` and the input should have the attributes `type="file" name="file"`)
 - **Get all albums:** (GET) /albums
-- **Create album:** (POST) /albums (the name should be in the request.body `{name: "New Album"}`)
-- **Get images in an album:** (GET) /albums/:albumId
+- **Get album:** (GET) /albums/:albumId
 - **Get a random image in an albums:** (GET) /albums/:albumId/random
+- **Create album:** (POST) /albums (the name should be in the request.body `{name: "New Album"}`)
 - **Update album by id:** (PUT) /albums/:albumId (the name should be in the request.body `{name: "New Name"}`)
 - **Delete album:** (DELETE) /albums/:albumId
