@@ -33,13 +33,13 @@ try:
   
   # Clearing screen
   logging.info('Clearing screen')
-  epd.display(epd.getbuffer(image))
+  epd.Clear()
 
   time.sleep(2)
 
   # Deactivate screen
   logging.info('Going to sleep')
-  epd.Clear()
+  epd.sleep()
 
 except IOError as e:
     logging.info(e)

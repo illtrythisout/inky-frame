@@ -1,13 +1,16 @@
 import '../styles/card.css';
 
-function AddItem({ itemToAdd }) {
-  switch (itemToAdd) {
-    case 'album':
-      break;
+function addAlbum(name) {
+  return name;
+}
 
-    default:
-      break;
-  }
+function AddItem({ itemToAdd }) {
+  console.log(itemToAdd);
+  return (
+    <button onClick={addAlbum()} className="card">
+      <p>+</p>
+    </button>
+  );
 }
 
 export default AddItem;
