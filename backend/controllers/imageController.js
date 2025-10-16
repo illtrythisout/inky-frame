@@ -167,11 +167,32 @@ async function createAlbum(req, res) {
 }
 async function deleteAlbum(req, res) {
   try {
+    // delete images
+    const imagesInAlbum = await prisma.image.findMany({
+      where: { parentId: Number(req.params.id) },
+    });
+    if (imagesInAlbum.length) {
+      for (let i = 0; i < imagesInAlbum.length; i++) {
+        // delete from cloudinary
+        const cloudResult = await cloudinary.uploader.destroy(
+          imagesInAlbum[i].publicId
+        );
+        if (!cloudResult || cloudResult.result !== 'ok') {
+          console.warn('Cloudinary delete returned:', cloudResult);
+        }
+
+        // delete from database if cloudinary delete was successful
+        await prisma.image.delete({ where: { id: imagesInAlbum[i].id } });
+      }
+    }
     const result = await prisma.album.delete({
       where: { id: Number(req.params.id) },
     });
 
-    res.status(200).json({ message: 'Deleted', data: result });
+    res.status(200).json({
+      message: 'Deleted',
+      data: { album: result, images: imagesInAlbum },
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to delete album' });
