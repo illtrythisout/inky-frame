@@ -102,7 +102,7 @@ async function deleteImage(req, res) {
 
 async function getAllAlbums(req, res) {
   try {
-    const result = await prisma.album.findMany();
+    const result = await prisma.album.findMany({ include: { images: true } });
 
     res.json({ data: result });
   } catch (err) {
@@ -110,10 +110,11 @@ async function getAllAlbums(req, res) {
     res.status(500).json({ error: 'Failed to get all albums' });
   }
 }
-async function getAlbumContent(req, res) {
+async function getAlbum(req, res) {
   try {
-    const result = await prisma.image.findMany({
-      where: { parentId: Number(req.params.id) },
+    const result = await prisma.album.findUnique({
+      where: { id: Number(req.params.id) },
+      include: { images: true },
     });
 
     res.json({ data: result });
@@ -205,7 +206,7 @@ module.exports = {
   postImage,
   deleteImage,
   getAllAlbums,
-  getAlbumContent,
+  getAlbum,
   getRandomAlbumContent,
   updateAlbum,
   createAlbum,
