@@ -26,6 +26,7 @@ export default function Sidebar() {
         <img src={settingsIcon} alt="settings" />
         <p>Settings</p>
       </Link>
+      <h2 className={styles.brandTitle}>Inky Frame</h2>
     </div>
   );
 }
