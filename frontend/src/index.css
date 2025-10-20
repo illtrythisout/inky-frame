@@ -39,9 +39,12 @@ select {
   --color-surface-alt: #f9f9f9;
   --color-surface-alt2: #e2e1e1;
   --color-text: #1a1a1a;
-  --color-danger: #ff5c5c;
-  --color-success: #4caf50;
-  --color-warning: #ffc107;
+  --color-danger: #ff4646;
+  --color-danger-alt: #ff9a9a;
+  --color-success: #3fa343;
+  --color-success-alt: #a4dfa6;
+  --color-warning: #e9af00;
+  --color-warning-alt: #f9dc86;
 
   /* spacing */
   --radius-sm: 6px;

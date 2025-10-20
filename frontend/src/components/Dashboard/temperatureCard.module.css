@@ -1,0 +1,35 @@
+.widget {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-md);
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  /* aspect-ratio: 5 / 3; */
+  aspect-ratio: 1 / 1;
+
+  border-radius: var(--radius-md);
+
+  background-color: var(--color-surface-alt2);
+}
+.imageContainer > p {
+  font-size: 4rem;
+}
+
+.imageContainer.safe {
+  background-color: var(--color-success-alt);
+  color: var(--color-success);
+}
+.imageContainer.warning {
+  background-color: var(--color-warning-alt);
+  color: var(--color-warning);
+}
+.imageContainer.danger {
+  background-color: var(--color-danger-alt);
+  color: var(--color-danger);
+}
