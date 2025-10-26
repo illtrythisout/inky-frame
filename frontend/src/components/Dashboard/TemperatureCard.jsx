@@ -7,7 +7,7 @@ export default function TemperatureCard() {
       <div className={`${styles.imageContainer} ${styles[warningLevel]}`}>
         <p>41C°</p>
       </div>
-      <p>CPU Temperature</p>
+      <h3>CPU Temperature</h3>
     </div>
   );
 }

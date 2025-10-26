@@ -8,7 +8,7 @@ export default function CurrentImageCard() {
       <div className={styles.imageContainer}>
         <img src={imageIcon} alt="Current Image" />
       </div>
-      <p>Current Image</p>
+      <h3>Current Image</h3>
     </div>
   );
 }

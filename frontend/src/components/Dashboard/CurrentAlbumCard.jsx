@@ -12,7 +12,7 @@ export default function CurrentAlbumCard() {
         <p className={styles.albumName}>Travel</p>
         <p className={styles.numberOfImages}>Image 12 of 13</p>
       </div>
-      <p className={styles.description}>Current Album</p>
+      <h3 className={styles.description}>Current Album</h3>
     </div>
   );
 }

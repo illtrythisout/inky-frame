@@ -38,6 +38,7 @@ select {
   --color-surface: #ffffff;
   --color-surface-alt: #f9f9f9;
   --color-surface-alt2: #e2e1e1;
+  --color-surface-alt3: #e5e5e5;
   --color-text: #1a1a1a;
   --color-danger: #ff4646;
   --color-danger-alt: #ff9a9a;
@@ -57,6 +58,7 @@ select {
 
   /* effects */
   --shadow-sm: 0 0 4px 4px rgba(0, 0, 0, 0.05);
+  --transition-sm: 0.1s ease;
 }
 
 #root {
@@ -85,6 +87,9 @@ b {
 h1 {
   font-size: 2rem;
 }
+h3 {
+  font-size: 1rem;
+}
 svg {
   --size: 1em;
   height: var(--size);
@@ -93,10 +98,22 @@ svg {
   fill: var(--color-text);
 }
 button {
-  background-color: transparent;
+  background-color: var(--color-surface-alt2);
+  padding: var(--padding-sm) var(--padding-md);
+
+  border-radius: var(--radius-sm);
   border: none;
 
+  box-shadow: var(--shadow-sm);
+
   cursor: pointer;
+  transition: var(--transition-sm);
+}
+button:hover {
+  background-color: var(--color-surface-alt3);
+}
+button:active {
+  background-color: var(--color-surface-alt2);
 }
 
 .card {
