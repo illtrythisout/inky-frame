@@ -1,5 +1,5 @@
 import App from './App';
-import AlbumPage from './pages/AlbumPage';
+import AlbumsPage from './pages/AlbumsPage';
 import Dashboard from './pages/Dashboard';
 
 const routes = [
@@ -8,7 +8,7 @@ const routes = [
     element: <App />,
     children: [
       { path: '/', element: <Dashboard /> },
-      { path: '/albums/:albumId?', element: <AlbumPage /> },
+      { path: '/albums/:albumId?', element: <AlbumsPage /> },
     ],
   },
 ];
