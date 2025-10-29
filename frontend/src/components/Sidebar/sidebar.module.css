@@ -1,4 +1,7 @@
 .card {
+  position: sticky;
+  top: var(--padding-md);
+
   display: flex;
   flex-direction: column;
   align-items: center;
