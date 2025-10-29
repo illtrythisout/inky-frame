@@ -1,6 +1,9 @@
 import styles from './albumSection.module.css';
+import { Link } from 'react-router';
 
 import AlbumCard from './AlbumCard';
+
+const albumId = 3;
 
 export default function AlbumsSection() {
   return (
@@ -10,7 +13,9 @@ export default function AlbumsSection() {
         <button>Create Album</button>
       </div>
       <div className={styles.albums}>
-        <AlbumCard />
+        <Link to={`/albums/${albumId}`}>
+          <AlbumCard />
+        </Link>
         <AlbumCard />
         <AlbumCard />
         <AlbumCard />

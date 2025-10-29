@@ -2,8 +2,8 @@ import styles from './dashboard.module.css';
 
 import CurrentImageCard from '../components/dashboard/CurrentImageCard';
 import CurrentAlbumCard from '../components/dashboard/CurrentAlbumCard';
-import TemperatureCard from '../components/Dashboard/TemperatureCard';
-import AlbumsSection from '../components/Dashboard/AlbumsSection';
+import TemperatureCard from '../components/dashboard/TemperatureCard';
+import AlbumsSection from '../components/dashboard/AlbumsSection';
 
 export default function Dashboard() {
   return (
