@@ -3,15 +3,9 @@ const cloudinary = require('../utils/cloudinary');
 
 async function getAllImages(req, res) {
   try {
-    const result = await cloudinary.api.resources_by_asset_folder('inky-frame');
+    const result = await prisma.image.findMany();
 
-    // Defensive check in case no resources found
-    if (!result.resources || result.resources.length === 0) {
-      return res.status(404).json({ error: 'No images found' });
-    }
-
-    // Send the URL as JSON
-    res.json(result);
+    res.json({ data: result });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to fetch images' });
@@ -19,21 +13,16 @@ async function getAllImages(req, res) {
 }
 async function getRandomImage(req, res) {
   try {
-    const result = await cloudinary.api.resources_by_asset_folder('inky-frame');
-
-    // Defensive check in case no resources found
-    if (!result.resources || result.resources.length === 0) {
-      return res.status(404).json({ error: 'No images found' });
-    }
+    const result = await prisma.image.findMany();
 
     // Pick a random image index (0-based)
-    const randomIndex = Math.floor(Math.random() * result.resources.length);
+    const randomIndex = Math.floor(Math.random() * result.length);
 
     // Send the URL as JSON
-    res.json(result.resources[randomIndex]);
+    res.json({ data: result[randomIndex] });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to fetch images' });
+    res.status(500).json({ error: 'Failed to fetch image' });
   }
 }
 async function postImage(req, res) {
