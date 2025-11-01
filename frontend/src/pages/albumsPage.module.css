@@ -1,3 +1,9 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .albums {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

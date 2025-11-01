@@ -13,7 +13,10 @@ export default function Dashboard() {
       <CurrentImageCard />
       <CurrentAlbumCard />
       <TemperatureCard />
-      <AlbumsSection albums={context.albums.data} />
+      <AlbumsSection
+        albums={context.albums.data}
+        refreshAlbums={context.refreshAlbums}
+      />
     </div>
   );
 }
