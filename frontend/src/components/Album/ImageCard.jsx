@@ -4,7 +4,7 @@ import { useState } from 'react';
 import imageIcon from '../../assets/icons/image.svg';
 import deleteIcon from '../../assets/icons/delete.svg';
 
-export default function ImageCard() {
+export default function ImageCard({ data }) {
   const [isHovering, setIsHovering] = useState(false);
   return (
     <div
@@ -12,7 +12,7 @@ export default function ImageCard() {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <img src={imageIcon} />
+      <img src={data?.url || imageIcon} />
       {isHovering && (
         <div className={styles.overlay}>
           <button className={styles.deleteBtn}>
