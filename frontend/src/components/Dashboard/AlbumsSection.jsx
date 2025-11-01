@@ -3,9 +3,8 @@ import { Link } from 'react-router';
 
 import AlbumCard from './AlbumCard';
 
-const albumId = 3;
-
-export default function AlbumsSection() {
+export default function AlbumsSection({ albums }) {
+  console.log('From the albums section: ', albums);
   return (
     <div className={`card ${styles.albumSection}`}>
       <div className={styles.header}>
@@ -13,15 +12,14 @@ export default function AlbumsSection() {
         <button>Create Album</button>
       </div>
       <div className={styles.albums}>
-        <Link to={`/albums/${albumId}`}>
-          <AlbumCard />
-        </Link>
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
+        {!albums ||
+          albums.map((album) => {
+            return (
+              <Link to={`/albums/${album.id}`}>
+                <AlbumCard key={album.id} data={album} />
+              </Link>
+            );
+          })}
       </div>
     </div>
   );
