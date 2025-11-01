@@ -16,7 +16,7 @@ export default function ViewAlbum() {
 
   return (
     <div className="card">
-      <h1>{albumId}</h1>
+      <h1>{album.name}</h1>
       <div className={styles.imagesContainer}>
         {!album ||
           album.images.map((image) => (
