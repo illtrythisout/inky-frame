@@ -26,16 +26,8 @@ def get_epd():
 # Setup logging
 logging.basicConfig(level=logging.INFO)
 
-# Image API
-IMAGE_API = 'http://localhost:3000/images/'
-
 try:
-  # Fetch image
-  logging.info('Fetching image url from the inky-frame backend')
-  response = requests.get(IMAGE_API)
-  response.raise_for_status()
-  data = response.json()
-  image_url = data['url']
+  image_url = sys.argv[1]
 
   logging.info('Downloading image from the cloudinary storage system')
   cloudinary_response = requests.get(image_url)

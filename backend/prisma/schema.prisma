@@ -8,13 +8,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Display {
+  id Int @id @default(autoincrement())
+
+  currentAlbumId Int?
+  currentAlbum   Album? @relation(fields: [currentAlbumId], references: [id])
+
+  currentImageId Int?
+  currentImage   Image? @relation(fields: [currentImageId], references: [id])
+}
+
 model Album {
   id        Int      @id @default(autoincrement())
   name      String   @db.VarChar(255)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  images Image[]
+  images  Image[]
+  Display Display[]
 }
 
 model Image {
@@ -27,6 +38,7 @@ model Image {
   updatedAt     DateTime @updatedAt
   mimetype      String
 
-  parent   Album? @relation(fields: [parentId], references: [id])
+  parent   Album?    @relation(fields: [parentId], references: [id])
   parentId Int?
+  Display  Display[]
 }

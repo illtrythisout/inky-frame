@@ -1,7 +1,8 @@
 const path = require('node:path');
 const express = require('express');
-require('dotenv').config();
 const cors = require('cors');
+require('dotenv').config();
+require('./utils/scheduler');
 
 const app = express(); // initialize express in app
 
@@ -26,6 +27,8 @@ app.use(express.json());
 // Router
 const imageRouter = require('./routes/imageRouter');
 app.use('/', imageRouter);
+const displayRouter = require('./routes/displayRouter');
+app.use('/display', displayRouter);
 
 // Start server
 const PORT = process.env.PORT || 3000;
