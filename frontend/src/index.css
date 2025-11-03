@@ -134,6 +134,9 @@ dialog {
 dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
 }
+dialog > p {
+  font-size: 1rem;
+}
 .dialogButtons {
   display: flex;
   gap: var(--padding-sm);
@@ -143,6 +146,10 @@ dialog::backdrop {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-md);
+
   padding: var(--padding-md);
 
   background-color: var(--color-surface);
@@ -157,6 +164,23 @@ form {
   gap: var(--padding-sm);
 }
 input {
+  align-self: center;
   outline: none;
   padding: calc(var(--padding-sm) / 2) var(--padding-sm);
+}
+
+input[type='file']::file-selector-button {
+  padding: calc(var(--padding-sm) / 2) var(--padding-sm);
+  margin-right: var(--padding-md);
+
+  font-family: monospace;
+
+  border-radius: var(--radius-sm);
+  border: 2px var(--color-text) solid;
+  background-color: var(--color-surface);
+
+  transition: var(--transition-sm);
+}
+input[type='file']::file-selector-button:hover {
+  background-color: var(--color-surface-alt2);
 }

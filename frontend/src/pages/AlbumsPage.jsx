@@ -16,7 +16,6 @@ export default function AlbumsPage() {
   function openDialog() {
     dialogRef.current?.showModal();
   }
-
   function closeDialog() {
     dialogRef.current?.close();
   }
@@ -51,7 +50,7 @@ export default function AlbumsPage() {
     <>
       <div className={`card ${styles.albumSection}`}>
         <div className={styles.header}>
-          <h3>All Albums</h3>
+          <h1>All Albums</h1>
           <button onClick={openDialog}>Create Album</button>
         </div>
 

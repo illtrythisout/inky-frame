@@ -1,3 +1,9 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .imagesContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
