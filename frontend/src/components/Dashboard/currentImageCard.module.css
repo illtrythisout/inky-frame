@@ -10,13 +10,16 @@
   align-items: center;
 
   width: 100%;
-  /* aspect-ratio: 5 / 3; */
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 5 / 3;
+  /* aspect-ratio: 1 / 1; */
+
+  overflow: hidden;
 
   border-radius: var(--radius-md);
 
   background-color: var(--color-surface-alt2);
 }
-.imageContainer > img {
-  height: 30%;
+.imageContainer img {
+  height: 100%;
+  object-fit: cover;
 }

@@ -10,8 +10,11 @@ export default function Dashboard() {
   const context = useOutletContext();
   return (
     <div id={styles.page}>
-      <CurrentImageCard />
-      <CurrentAlbumCard />
+      <CurrentImageCard currentImage={context.currentImage} />
+      <CurrentAlbumCard
+        currentAlbum={context.currentAlbum}
+        currentImage={context.currentImage}
+      />
       <TemperatureCard />
       <AlbumsSection
         albums={context.albums.data}

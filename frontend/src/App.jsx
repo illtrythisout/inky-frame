@@ -19,15 +19,54 @@ export default function App() {
     }
   }
 
+  // get current album
+  const [currentAlbum, setCurrentAlbum] = useState([]);
+  async function fetchCurrentAlbum() {
+    try {
+      const url = 'http://localhost:3000/display/album';
+
+      const response = await fetch(url);
+      const data = await response.json();
+
+      setCurrentAlbum(data);
+    } catch (err) {
+      console.error('Error fetching current album:', err);
+    }
+  }
+
+  // get current image
+  const [currentImage, setCurrentImage] = useState([]);
+  async function fetchCurrentImage() {
+    try {
+      const url = 'http://localhost:3000/display/image';
+
+      const response = await fetch(url);
+      const data = await response.json();
+
+      setCurrentImage(data);
+    } catch (err) {
+      console.error('Error fetching current image:', err);
+    }
+  }
+
   // call on initial load
   useEffect(() => {
     fetchAlbums();
+    fetchCurrentAlbum();
+    fetchCurrentImage();
   }, []);
 
   return (
     <div className="app">
       <Sidebar />
-      <Outlet context={{ albums, refreshAlbums: fetchAlbums }} />
+      <Outlet
+        context={{
+          albums,
+          refreshAlbums: fetchAlbums,
+          currentAlbum,
+          currentImage,
+        }}
+      />
     </div>
   );
 }
