@@ -25,6 +25,12 @@ cron.schedule('0 4 * * *', async () => {
     const randomIndex = Math.floor(Math.random() * currentAlbum.images.length);
     const randomImage = currentAlbum.images[randomIndex];
 
+    // update db
+    await prisma.display.update({
+      where: { id: display.id },
+      data: { currentImageId: randomImage.id },
+    });
+
     // update display
     const result = await updateDisplay(randomImage.url); //args currentImage
     const date = new Date();

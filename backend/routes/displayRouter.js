@@ -2,9 +2,14 @@ const { Router } = require('express');
 const router = Router();
 const prisma = require('../client/prisma');
 
-const { updateDisplay } = require('../controllers/displayController.js');
+const {
+  updateDisplay,
+  updateAlbum,
+  getCurrentImage,
+  getCurrentAlbum,
+} = require('../controllers/displayController.js');
 
-router.post('/update', async (req, res) => {
+router.post('/image', async (req, res) => {
   try {
     const { imageId } = req.body;
 
@@ -27,5 +32,9 @@ router.post('/update', async (req, res) => {
     res.status(500).json({ error: 'Failed to update display' });
   }
 });
+router.post('/album', updateAlbum);
+
+router.get('/image', getCurrentImage);
+router.get('/album', getCurrentAlbum);
 
 module.exports = router;
