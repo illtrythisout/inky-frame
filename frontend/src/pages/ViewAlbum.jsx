@@ -64,7 +64,11 @@ export default function ViewAlbum() {
         </div>
         <div className={styles.imagesContainer}>
           {album?.images?.map((image) => (
-            <ImageCard data={image} key={image.id} />
+            <ImageCard
+              data={image}
+              refreshAlbums={refreshAlbums}
+              key={image.id}
+            />
           ))}
         </div>
       </div>

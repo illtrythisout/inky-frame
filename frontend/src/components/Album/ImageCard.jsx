@@ -4,8 +4,36 @@ import { useState } from 'react';
 import imageIcon from '../../assets/icons/image.svg';
 import deleteIcon from '../../assets/icons/delete.svg';
 
-export default function ImageCard({ data }) {
+export default function ImageCard({ data, refreshAlbums }) {
   const [isHovering, setIsHovering] = useState(false);
+  async function handleDelete() {
+    const confirmDelete = window.confirm(
+      'Are you sure you want to delete this image?'
+    );
+    if (!confirmDelete) return;
+
+    try {
+      const url = `http://localhost:3000/images/${data.id}`;
+
+      // make delete request
+      const response = await fetch(url, { method: 'DELETE' });
+      if (!response.ok) {
+        throw new Error(`Failed to delete image: ${response.statusText}`);
+      }
+      const result = await response.json();
+
+      console.log('Image deleted: ' + result);
+
+      // refresh page
+      refreshAlbums();
+
+      return result;
+    } catch (err) {
+      console.error('Error deleting image:', err);
+      alert('Something went wrong while deleting the image.');
+    }
+  }
+
   return (
     <div
       className={styles.imageContainer}
@@ -15,7 +43,7 @@ export default function ImageCard({ data }) {
       <img src={data?.url || imageIcon} />
       {isHovering && (
         <div className={styles.overlay}>
-          <button className={styles.deleteBtn}>
+          <button className={styles.deleteBtn} onClick={handleDelete}>
             <img src={deleteIcon} alt="delete icon" />
           </button>
           <button className={styles.setCurrentBtn}>Set as Current Image</button>
