@@ -1,4 +1,6 @@
 .albumCard {
+  position: relative;
+
   display: grid;
   grid-template-columns: 35% 1fr;
   grid-template-rows: repeat(2, 1fr);
@@ -39,4 +41,38 @@
 .albumName {
   align-self: end;
   font-size: 1rem;
+}
+
+/* overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: end;
+
+  padding: var(--padding-sm);
+
+  height: 100%;
+  width: 100%;
+
+  animation: fadeIn 0.15s ease;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.deleteBtn {
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+
+  height: max-content;
+  width: max-content;
 }

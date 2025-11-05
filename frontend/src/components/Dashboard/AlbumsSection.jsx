@@ -53,7 +53,7 @@ export default function AlbumsSection({ albums, refreshAlbums }) {
           {!albums ||
             albums.map((album) => (
               <Link to={`/albums/${album.id}`} key={album.id}>
-                <AlbumCard data={album} />
+                <AlbumCard data={album} refreshAlbums={refreshAlbums} />
               </Link>
             ))}
         </div>

@@ -6,6 +6,7 @@ import deleteIcon from '../../assets/icons/delete.svg';
 
 export default function ImageCard({ data, refreshAlbums }) {
   const [isHovering, setIsHovering] = useState(false);
+
   async function handleDelete() {
     const confirmDelete = window.confirm(
       'Are you sure you want to delete this image?'
