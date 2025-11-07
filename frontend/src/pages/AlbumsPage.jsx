@@ -2,6 +2,8 @@ import styles from './albumsPage.module.css';
 import { useOutletContext } from 'react-router';
 import { Link } from 'react-router';
 import { useRef } from 'react';
+// get env variables
+const API_URL = import.meta.env.VITE_API_URL;
 
 import AlbumCard from '../components/dashboard/AlbumCard';
 
@@ -27,7 +29,7 @@ export default function AlbumsPage() {
     if (!albumName) return;
 
     try {
-      const response = await fetch('http://localhost:3000/albums', {
+      const response = await fetch(`${API_URL}/albums`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: albumName }),

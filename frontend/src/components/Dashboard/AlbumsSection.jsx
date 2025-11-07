@@ -2,6 +2,8 @@ import { useRef } from 'react';
 import styles from './albumSection.module.css';
 import { Link } from 'react-router';
 import AlbumCard from './AlbumCard';
+// get env variables
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function AlbumsSection({ albums, refreshAlbums }) {
   const dialogRef = useRef(null);
@@ -22,7 +24,7 @@ export default function AlbumsSection({ albums, refreshAlbums }) {
     if (!albumName) return;
 
     try {
-      const response = await fetch('http://localhost:3000/albums', {
+      const response = await fetch(`${API_URL}/albums`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: albumName }),

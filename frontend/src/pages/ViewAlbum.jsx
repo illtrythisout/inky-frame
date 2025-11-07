@@ -1,6 +1,8 @@
 import styles from './viewAlbum.module.css';
 import { useOutletContext, useParams } from 'react-router';
 import { useRef } from 'react';
+// get env variables
+const API_URL = import.meta.env.VITE_API_URL;
 
 import ImageCard from '../components/album/ImageCard';
 
@@ -34,13 +36,10 @@ export default function ViewAlbum() {
     formData.append('file', file);
 
     try {
-      const response = await fetch(
-        `http://localhost:3000/albums/${albumId}/images`,
-        {
-          method: 'POST',
-          body: formData,
-        }
-      );
+      const response = await fetch(`${API_URL}/albums/${albumId}/images`, {
+        method: 'POST',
+        body: formData,
+      });
 
       if (!response.ok) throw new Error('Failed to upload image');
 

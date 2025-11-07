@@ -3,12 +3,15 @@ import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router';
 import Sidebar from './components/sidebar/Sidebar';
 
+// get env variables
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function App() {
   // get all albums
   const [albums, setAlbums] = useState([]);
   async function fetchAlbums() {
     try {
-      const url = 'http://localhost:3000/albums';
+      const url = `${API_URL}/albums`;
 
       const response = await fetch(url);
       const data = await response.json();
@@ -23,7 +26,7 @@ export default function App() {
   const [currentAlbum, setCurrentAlbum] = useState([]);
   async function fetchCurrentAlbum() {
     try {
-      const url = 'http://localhost:3000/display/album';
+      const url = `${API_URL}/display/album`;
 
       const response = await fetch(url);
       const data = await response.json();
@@ -38,7 +41,7 @@ export default function App() {
   const [currentImage, setCurrentImage] = useState([]);
   async function fetchCurrentImage() {
     try {
-      const url = 'http://localhost:3000/display/image';
+      const url = `${API_URL}/display/image`;
 
       const response = await fetch(url);
       const data = await response.json();

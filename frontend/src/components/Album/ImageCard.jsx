@@ -1,6 +1,9 @@
 import styles from './imageCard.module.css';
 import { useState } from 'react';
 
+// get env variables
+const API_URL = import.meta.env.VITE_API_URL;
+
 import imageIcon from '../../assets/icons/image.svg';
 import deleteIcon from '../../assets/icons/delete.svg';
 
@@ -14,7 +17,7 @@ export default function ImageCard({ data, refreshAlbums }) {
     if (!confirmDelete) return;
 
     try {
-      const url = `http://localhost:3000/images/${data.id}`;
+      const url = `${API_URL}/images/${data.id}`;
 
       // make delete request
       const response = await fetch(url, { method: 'DELETE' });
