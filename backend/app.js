@@ -6,7 +6,7 @@ require('./utils/scheduler');
 
 const app = express(); // initialize express in app
 
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = ['http://localhost:5173', process.env.FRONTEND_URL];
 app.use(
   cors({
     origin: (origin, callback) => {
