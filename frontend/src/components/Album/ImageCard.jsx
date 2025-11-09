@@ -38,6 +38,30 @@ export default function ImageCard({ data, refreshAlbums }) {
     }
   }
 
+  async function handleUpdateImage() {
+    try {
+      const url = `${API_URL}/display/image/${data.id}`;
+
+      // make request
+      const response = await fetch(url, { method: 'PATCH' });
+      if (!response.ok) {
+        const message = await response.text();
+        throw new Error(`Failed to update image: ${message}`);
+      }
+
+      const result = await response.json();
+      console.log('Image updated: ' + result);
+
+      // refresh page
+      refreshAlbums();
+
+      return result;
+    } catch (err) {
+      console.error('Error updating image:', err);
+      alert('Something went wrong while updating the image.');
+    }
+  }
+
   return (
     <div
       className={styles.imageContainer}
@@ -50,7 +74,9 @@ export default function ImageCard({ data, refreshAlbums }) {
           <button className={styles.deleteBtn} onClick={handleDelete}>
             <img src={deleteIcon} alt="delete icon" />
           </button>
-          <button className={styles.setCurrentBtn}>Set as Current Image</button>
+          <button className={styles.setCurrentBtn} onClick={handleUpdateImage}>
+            Set as Current Image
+          </button>
         </div>
       )}
     </div>

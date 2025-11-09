@@ -3,7 +3,7 @@ const { updateDisplay } = require('../utils/display');
 
 async function updateImage(req, res) {
   try {
-    const { imageId } = req.body;
+    const imageId = Number(req.params.id);
 
     const display = await prisma.display.findFirst();
     // update db
@@ -26,7 +26,7 @@ async function updateImage(req, res) {
 
 async function updateAlbum(req, res) {
   try {
-    const { albumId } = req.body;
+    const albumId = Number(req.params.id);
 
     const display = await prisma.display.findFirst();
     await prisma.display.update({

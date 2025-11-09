@@ -9,8 +9,8 @@ const {
   getCurrentAlbum,
 } = require('../controllers/displayController.js');
 
-router.post('/image', updateImage);
-router.post('/album', updateAlbum);
+router.patch('/image/:id', updateImage);
+router.patch('/album/:id', updateAlbum);
 
 router.get('/image', getCurrentImage);
 router.get('/album', getCurrentAlbum);
