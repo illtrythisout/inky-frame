@@ -1,14 +1,17 @@
-import { defineConfig } from 'vite';
+/* eslint-env node */
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// get env variables
-const ALLOWED_HOSTS = import.meta.env.VITE_ALLOWED_HOSTS;
-
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    host: true,
-    allowedHosts: [ALLOWED_HOSTS],
-  },
+export default defineConfig(({ mode }) => {
+  // Load env variables
+  const env = loadEnv(mode, process.cwd(), '');
+
+  return {
+    plugins: [react()],
+    server: {
+      host: true,
+      allowedHosts: [env.VITE_ALLOWED_HOSTS],
+    },
+  };
 });
