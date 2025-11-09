@@ -1,5 +1,5 @@
 const cron = require('node-cron');
-const { updateDisplay } = require('../controllers/displayController');
+const { updateDisplay } = require('./display');
 const prisma = require('../client/prisma');
 
 // Run everyday at 04:00

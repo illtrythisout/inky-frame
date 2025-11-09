@@ -1,24 +1,4 @@
-const { execFile } = require('child_process');
-const util = require('util');
-const execFilePromise = util.promisify(execFile);
-const path = require('path');
 const prisma = require('../client/prisma');
-
-async function updateDisplay(imageUrl) {
-  try {
-    const scriptPath = path.join(__dirname, '../../pi/display-image.py');
-    const { stdout, stderr } = await execFilePromise('python3', [
-      scriptPath,
-      imageUrl,
-    ]);
-    if (stderr) console.warn('Python stderr:', stderr);
-    console.log('Display updated:', stdout);
-    return { success: true, output: stdout };
-  } catch (err) {
-    console.error('Failed to update display:', err);
-    return { success: false, error: err.message };
-  }
-}
 
 async function updateAlbum(req, res) {
   try {
@@ -66,7 +46,6 @@ async function getCurrentAlbum(req, res) {
 }
 
 module.exports = {
-  updateDisplay,
   updateAlbum,
   getCurrentImage,
   getCurrentAlbum,
