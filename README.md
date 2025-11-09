@@ -27,6 +27,7 @@ The inky pi runs an api with Node.js on the pi itself that delivers images to th
   - **Update album by id:** (PUT) /albums/:albumId (the name should be in the request.body `{name: "New Name"}`)
   - **Delete album:** (DELETE) /albums/:albumId
 - **Display**
+  - **Get current pi temperature:** (GET) /display/pi/temp
   - **Update display:** (POST) /display/image (the image id should be in the request.body `{imageId: 12}`)
   - **Get current image:** (POST) /display/image
   - **Update current album:** (POST) /display/album (the album id should be in the request.body `{albumId: 4}`)

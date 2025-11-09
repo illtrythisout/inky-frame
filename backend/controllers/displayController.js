@@ -1,5 +1,15 @@
 const prisma = require('../client/prisma');
-const { updateDisplay } = require('../utils/display');
+const { updateDisplay, getPiTemperature } = require('../utils/display');
+
+async function getPiTemp(req, res) {
+  try {
+    const temp = await getPiTemperature();
+    res.json({ data: { temperature: temp.output } });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to get pi's temperature" });
+  }
+}
 
 async function updateImage(req, res) {
   try {
@@ -70,6 +80,7 @@ async function getCurrentAlbum(req, res) {
 }
 
 module.exports = {
+  getPiTemp,
   updateImage,
   updateAlbum,
   getCurrentImage,
