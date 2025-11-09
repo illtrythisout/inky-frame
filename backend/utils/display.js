@@ -25,7 +25,7 @@ async function getPiTemperature(imageUrl) {
     const scriptPath = path.join(__dirname, '../../pi/display-image.py');
     const { stdout, stderr } = await execPromise('vcgencmd measure_temp');
     if (stderr) console.warn('Pi stderr:', stderr);
-    return { success: true, output: stdout };
+    return { success: true, output: stdout.match(/[\d.]+/)[0] };
   } catch (err) {
     console.error("Failed to get the pi's temperature:", err);
     return { success: false, error: err.message };
