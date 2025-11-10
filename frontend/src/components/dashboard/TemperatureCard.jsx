@@ -12,15 +12,16 @@ export default function TemperatureCard() {
     async function fetchTemp() {
       const res = await fetch(`${API_URL}/display/pi/temp`);
       const data = await res.json();
-      setTemperature(data.data.temperature);
+      const currentTemp = Number(data.data.temperature);
+      setTemperature(currentTemp);
 
-      if (temperature >= 0 && temperature < 60) {
+      if (currentTemp >= 0 && currentTemp < 60) {
         // safe temp between 0 and 60 C
         setWarningLevel('safe');
       } else if (
         // warning temp between 60 and 80 C or between -20 and 0 C
-        (temperature < 0 && temperature >= -20) ||
-        (temperature <= 60 && temperature > 80)
+        (currentTemp < 0 && currentTemp >= -20) ||
+        (currentTemp <= 60 && currentTemp > 80)
       ) {
         setWarningLevel('warning');
       } else {
